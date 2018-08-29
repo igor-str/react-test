@@ -1,5 +1,6 @@
 import React ,{ Component } from 'react';
 import './data-list.scss';
+import { ListItem } from '../ListItem/ListItem';
 
 export class DataList extends Component {
 
@@ -7,9 +8,7 @@ export class DataList extends Component {
     super(props)
 
     this.state = {
-      active: false,
-      aa: props.opa,
-      bb: []
+      active: false
     }
   }
 
@@ -23,7 +22,7 @@ export class DataList extends Component {
     return (
         <ol>
           {this.props.data.map((item, index) => {
-            return <li key={index}>{item.title}</li>
+            return <ListItem key={`item-id-${index}`} title={item.title}/>
           })}
         </ol>
     );

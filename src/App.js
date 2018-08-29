@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { Route, Switch, Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import logo from './assets/logo.svg';
 import { Footer } from './components/footer/footer';
 import { Header } from './components/header/header';
 import { DataList } from './components/DataList/DataList';
+import { AddPost } from './components/AddPost/AddPost';
+import { CatalogPage } from './pages/CatalogPage/CatalogPage';
+import { HomePage } from './pages/HomePage/HomePage';
 
 
 export default class App extends Component {
@@ -15,7 +19,7 @@ export default class App extends Component {
       username: 'codeguida',
       menuList: ['About', 'Contact us', 'Home'],
       posts: [],
-      some: [
+      postsOffline: [
         {
           "userId": 1,
           "id": 1,
@@ -51,7 +55,7 @@ export default class App extends Component {
   }
 
   componentDidMount = () => {
-    console.log("цей метод - початок життєвого циклу компоненту");
+    console.log("цей метод викликається при закінцені рендеру компоненту");
     axios.get(`https://jsonplaceholder.typicode.com/posts?_limit=10`)
         .then(res => {
           const posts = res.data.map(obj => obj);
@@ -63,6 +67,13 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header/>
+        <NavLink to='/same_name' activeClassName="active">Add post</NavLink>
+        <Link to='/'>HomePage</Link>
+        <Switch>
+          <Route exact path='/' component={ HomePage }/>
+          <Route exact path='/catalog' component={ CatalogPage }/>
+          <Route exact path='/same_name' component={ AddPost }/>
+        </Switch>
         <div>
           <img src={logo} className="App-logo" alt="logo" width={50} height={50} />
           <p>{this.state.username}</p>
@@ -73,7 +84,8 @@ export default class App extends Component {
               onChange={this.handleChange}
           />
         </div>
-        <DataList data={this.state.posts} opa={this.state.some} />
+        <DataList data={this.state.posts}/>
+        <button className="btn btn--green el-center">Add new post</button>
         <Footer listItemsMenu={this.state.menuList}/>
       </div>
     );

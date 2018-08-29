@@ -14,3 +14,30 @@ body {
   margin: 0;
   padding: 0;
 }
+.el-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn {
+  padding: 8px 20px;
+  outline: none;
+  background-color: $white;
+  color: $green;
+  border: 1px solid $green;
+  border-radius: 5px;
+  text-align: center;
+  transition: $transition;
+  &:hover, &:active, &:focus {
+    background-color: $green;
+    color: $white;
+  }
+  &--green {
+    background-color: $green;
+    color: $white;
+    &:hover, &:active, &:focus {
+      background-color: $white;
+      color: $green;
+    }
+  }
+}
