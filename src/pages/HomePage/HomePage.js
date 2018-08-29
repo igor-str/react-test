@@ -2,8 +2,8 @@ import React ,{ Component } from 'react';
 import { Link} from 'react-router-dom';
 import './home-page.scss';
 import axios from 'axios/index';
-import logo from '../../assets/logo.svg';
 import { DataList } from '../../components/DataList/DataList';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 export class HomePage extends Component {
 
@@ -56,23 +56,29 @@ export class HomePage extends Component {
           this.setState({ posts });
         });
   }
+
   render() {
     return (
         <div className="home-page">
-          <div>
-            <img src={logo} className="App-logo" alt="logo" width={50} height={50} />
-            <p>{this.state.username}</p>
-            Change Name:
-            <input
-                type="text"
-                value={this.state.username}
-                onChange={this.handleChange}
-            />
-          </div>
-          <DataList data={this.state.posts}/>
-          <Link to='/add_post' className="reset-link">
-            <button className="btn btn--green el-center">Add new post</button>
-          </Link>
+          <Grid>
+            <Row>
+              <Col xs={12}>
+                <div>
+                  <p>{this.state.username}</p>
+                  Change Name:
+                  <input
+                      type="text"
+                      value={this.state.username}
+                      onChange={this.handleChange}
+                  />
+                </div>
+                <DataList data={this.state.posts}/>
+                <Link to={{ pathname: '/add_post', state: { data: this.state.postsOffline} }} className="reset-link">
+                  <button className="btn btn--green el-center">Add new post</button>
+                </Link>
+              </Col>
+            </Row>
+          </Grid>
         </div>
     );
   }

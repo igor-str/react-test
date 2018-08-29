@@ -28,6 +28,7 @@ body {
   border-radius: 5px;
   text-align: center;
   transition: $transition;
+  cursor: pointer;
   &:hover, &:active, &:focus {
     background-color: $green;
     color: $white;
@@ -38,6 +39,35 @@ body {
     &:hover, &:active, &:focus {
       background-color: $white;
       color: $green;
+    }
+  }
+}
+.close-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  transition: $transition;
+  span {
+    transition: $transition;
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    border-top: 2px solid $black;
+    transform: rotate(45deg);
+    transform-origin: center;
+    &:last-child {
+      transform: rotate(315deg);
+    }
+  }
+  &:hover {
+    transform-origin: center;
+    transform: rotate(180deg);
+    span {
+      border-top: 2px solid $green;
     }
   }
 }

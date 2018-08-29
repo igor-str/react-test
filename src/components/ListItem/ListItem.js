@@ -19,7 +19,16 @@ export class ListItem extends Component {
 
   render() {
     return (
-        <li>{this.props.title}</li>
+        <li className="post-item">
+          <div className="close-icon">
+            <span></span>
+            <span></span>
+          </div>
+          <h5>{this.props.title}</h5>
+          <div>
+
+          </div>
+        </li>
     );
   }
 }
